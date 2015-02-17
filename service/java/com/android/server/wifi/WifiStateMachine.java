@@ -4504,6 +4504,9 @@ public class WifiStateMachine extends StateMachine implements WifiNative.WifiPno
             return true;
         } catch (RemoteException e) {
             return false;
+        } catch (IllegalStateException ie) {
+           loge("Unable to set interface config: " + ie);
+           return false;
         }
     }
 
