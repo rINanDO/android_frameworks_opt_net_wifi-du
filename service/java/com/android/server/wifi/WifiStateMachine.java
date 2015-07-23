@@ -3578,9 +3578,11 @@ public class WifiStateMachine extends StateMachine implements WifiNative.WifiPno
         }
         mScreenBroadcastReceived.set(true);
 
-        getWifiLinkLayerStats(false);
-        mOnTimeScreenStateChange = mOnTime;
-        lastScreenStateChangeTimeStamp = lastLinkLayerStatsUpdate;
+        if (mIsRunning) {
+            getWifiLinkLayerStats(false);
+            mOnTimeScreenStateChange = mOnTime;
+            lastScreenStateChangeTimeStamp = lastLinkLayerStatsUpdate;
+        }
 
         cancelDelayedScan();
 
